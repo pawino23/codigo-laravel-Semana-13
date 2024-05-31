@@ -1,0 +1,84 @@
+<?php
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//Petición por GET
+Route::get('/', function () {
+    return '!Hola mundo de Laravel¡';
+});
+
+// Petición de para rutas de varios verbos
+Route::match(array('GET', 'POST'), '/', function () {
+    return '!Hola mundo de Laravel...¡';
+});
+
+// Petición de POST
+Route::post('persona/nuevo', function () {
+    return '!Hola mundo de Laravel¡';
+});
+
+// Petición de PUT
+Route::put('persona/nuevo', function () {
+    //
+});
+
+// Petición de DELETE
+Route::delete('persona/borrar', function () {
+    //
+});
+
+//Petición para cualquier tipo de petición HTTP utilizando el método any
+Route::any('persona', function() {
+    return '!Hola mundo desde Laravel....¡';
+});
+
+//añadir parámetros a una ruta
+Route::get('persona/{id}', function($id=25){
+    return 'Persona: '.$id;
+});
+
+//
+Route::get('persona/{nombre?}', function($nombre = null){
+    return $nombre;
+});
+
+//
+Route::get('persona/{nombre?}', function($nombre = 'Paulo Adrian'){
+    return $nombre;
+});
+
+//
+Route::get('persona/{nombre?}', function($nombre = null){
+    return $nombre;
+})
+->where('nombre', '[A-Za-z]+');
+
+//
+Route::get('persona/{id}', function($id){
+    return $id;
+})
+->where('id', '[0-9]+');
+
+//
+Route::get('persona/{id}/{nombre}', function($id, $nombre){
+    return 'Id: '.$id. '<br> Nombre: '.$nombre;
+})
+->where(array('id' => '[0-9]+', 'nombre' => '[A-Za-z]+'));
+
+//
+Route::get('persona/{id}', function($id){
+    return $id;
+})
+->where('id', '[0-9]+');
+
+//
+Route::get('/', function () {
+    return view('home', array('nombre' => 'Paulo Aliaga'));
+});
+
+//
+Route::get('/', function(){
+    return view('hola')->with('name', 'Paulo Adrian');
+});

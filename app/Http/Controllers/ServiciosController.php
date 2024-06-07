@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Servicio;
 
 class ServiciosController extends Controller
 {
-    public function servicios(){
-        $servicios = [
-            ['titulo' => 'Servicio 01'],
-            ['titulo' => 'Servicio 02'],
-            ['titulo' => 'Servicio 03'],
-            ['titulo' => 'Servicio 04'],
-            ['titulo' => 'Servicio 05'],
-        ];
+    public function index()
+    {
+        $servicios = Servicio::latest()->paginate(2);
         return view('servicios', compact('servicios'));
+    }
+
+    public function show($id)
+    {
+        $servicio = Servicio::findOrFail($id);
+        return view('servicio', compact('servicio'));
     }
 }

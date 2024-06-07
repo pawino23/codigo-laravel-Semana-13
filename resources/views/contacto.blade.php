@@ -1,7 +1,10 @@
 @extends('layout')
 
-@section('title','Contacto')
+@section('title', 'Contacto')
 
 @section('content')
-    <h2>Contacto</h2>
+    <h1>Contacto</h1>
+    <div class="container">
+        <p>Formulario de contacto.</p>
+    </div>
 @endsection

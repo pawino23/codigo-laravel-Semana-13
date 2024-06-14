@@ -3,8 +3,14 @@
 @section('title', 'Servicios')
 
 @section('content')
+    <tr>
+        <td colspan="4">
+            <a href="{{ route('servicios.create') }}">Nuevo Servicio</a>
+        </td>
+    </tr>
+
     <div class="servicios-container">
-        <h2>Servicios</h2>
+        <h2>Listado de Servicios</h2>
         <table class="table table-striped">
             @if($servicios->count())
                 @foreach($servicios as $servicio)

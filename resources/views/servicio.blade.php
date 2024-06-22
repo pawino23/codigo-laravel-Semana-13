@@ -3,9 +3,11 @@
 @section('title', 'Servicio')
 
 @section('content')
-    <h1>Servicio:</h1>
-    <h2>{{ $servicio->titulo }}</h2>
-    <div class="container">
-        <p>{{ $servicio->descripcion }}</p>
+    <div class="container mt-4">
+        <h1>Servicio:</h1>
+        <h2 class="servicio-title">{{ $servicio->titulo }}</h2>
+        <div class="servicio-description">
+            <p>{{ $servicio->descripcion }}</p>
+        </div>
     </div>
 @endsection

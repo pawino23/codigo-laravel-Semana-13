@@ -17,4 +17,5 @@ Route::get('servicios/{id}', [ServiciosController::class, 'show'])->name('servic
 Route::delete('servicios/{servicio}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 
 Route::get('contacto', [ContactoController::class, 'index'])->name('contacto');
+Route::get('contacto/crear', [ContactoController::class, 'create'])->name('contacto.create');
 Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');

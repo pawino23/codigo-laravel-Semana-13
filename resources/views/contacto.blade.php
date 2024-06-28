@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="mensaje">Mensaje</label>
-                <textarea name="mensaje" id="mensaje" cols="30" rows="5" placeholder="Mensaje" class="form-control"  value="{{ old('mensaje') }}"></textarea>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="5" placeholder="Mensaje" class="form-control">{{ old('mensaje') }}</textarea>
                 {{ $errors->first('mensaje') }}
             </div>
             <div class="form-group text-center">

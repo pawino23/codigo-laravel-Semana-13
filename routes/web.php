@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\ContactoController;
 
 Route::view('/', 'home')->name('home');
 Route::view('nosotros', 'nosotros')->name('nosotros');
@@ -13,4 +15,6 @@ Route::match(['put', 'patch'], 'servicios/{servicio}', [ServiciosController::cla
 Route::post('servicios', [ServiciosController::class, 'store'])->name('servicios.store');
 Route::get('servicios/{id}', [ServiciosController::class, 'show'])->name('servicios.show');
 Route::delete('servicios/{servicio}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-Route::view('contacto', 'contacto')->name('contacto');
+
+Route::get('contacto', [ContactoController::class, 'index'])->name('contacto');
+Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');

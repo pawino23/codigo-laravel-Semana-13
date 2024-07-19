@@ -4,7 +4,9 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2 class="mb-3">Editar Servicio</h2>
+        @auth
+            <h2 class="mb-3">Editar Servicio</h2>
+        @endauth
 
         @if ($errors->any())
             <div class="alert alert-danger">

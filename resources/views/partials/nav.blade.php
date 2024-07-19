@@ -12,5 +12,18 @@
         <th scope="col" class="{{ setActivo('contacto') }}">
             <a href="{{ route('contacto') }}">Contacto</a>
         </th>
+        @guest
+            <th scope="col" class="{{ setActivo('login') }}">
+                <a href="{{ route('login') }}">Login</a>
+            </th>
+        @else
+            <th scope="col">
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+            </th>
+        @endguest
     </tr>
 </thead>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>

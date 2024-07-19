@@ -1,10 +1,17 @@
 @extends('layout')
 
-@section('title', 'Home')
+@section('title','Home')
 
 @section('content')
-    <div class="jumbotron">
-        <h1 class="display-4">Home</h1>
-        <p class="lead">Página de inicio.</p>
-    </div>
+    <tr>
+        <td colspan="4">Home:</td>
+    </tr>
+
+    <tr>
+        <td colspan="4">
+            @auth
+                {{ auth()->user()->name }}
+            @endauth
+        </td>
+    </tr>
 @endsection

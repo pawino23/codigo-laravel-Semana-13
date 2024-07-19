@@ -8,6 +8,11 @@ use App\Models\Servicio;
 
 class ServiciosController extends Controller
 {
+    public function __construc(){
+        // $this->middleware('auth')->only('create','edit');
+        $this->middleware('auth')->only('index','show');
+    }
+
     public function index(){
         $servicios = Servicio::latest()->paginate(2);
         return view('servicios', compact('servicios'));
@@ -27,7 +32,7 @@ class ServiciosController extends Controller
     public function store(CreateServicioRequest $request){
         Servicio::create($request->validated());
 
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('estado', 'El Servicio fue creado correctamente');
     }
 
     public function edit(Servicio $servicio){
@@ -39,12 +44,12 @@ class ServiciosController extends Controller
     public function update(CreateServicioRequest $request, Servicio $servicio){
         $servicio->update($request->validated());
 
-        return redirect()->route('servicios.show', $servicio);
+        return redirect()->route('servicios.show', $servicio)->with('estado', 'El Servicio fue actualizado correctamente');
     }
 
     public function destroy(Servicio $servicio){
         $servicio->delete();
 
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('estado', 'El Servicio fue eliminado correctamente');
     }
 }

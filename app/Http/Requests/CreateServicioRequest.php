@@ -24,13 +24,27 @@ class CreateServicioRequest extends FormRequest
         return [
             'titulo' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
+            'image' => [
+                $this->route('servicio') ? 'nullable' : 'required',
+                'mimes:jpg,jpeg,png',
+                'max:2048',
+            ],
         ];
     }
 
-    public function messages(){
+    /**
+     * Custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages()
+    {
         return [
             'titulo.required' => 'Se necesita un Titulo para el servicio',
-            'descripcion.required' => 'Ingresa una descripción, es necesaria'
+            'descripcion.required' => 'Ingresa una descripción, es necesaria',
+            'image.image' => 'El archivo debe ser una imagen',
+            'image.mimes' => 'La imagen debe ser un archivo de tipo: jpg, jpeg, png',
+            'image.max' => 'La imagen no debe ser mayor a 2MB',
         ];
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateServicioRequest;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Events\ServicioSaved;
 use Illuminate\Http\Request;
 use App\Models\Servicio;
 
@@ -35,6 +37,16 @@ class ServiciosController extends Controller
         if ($request->hasFile('image')) {
             $servicio->image = $request->file('image')->store('images', 'public');
             $servicio->save();
+            
+            $image = Image::make(storage::get($servicio->image))
+                ->widen(600)
+                ->limitColors(255)
+                ->encode();
+
+                //
+                Storage::put($servicio->image, (string) $image);
+
+                ServicioSaved::dispatch($servicio);
         }
         return redirect()->route('servicios.index')->with('estado', 'El Servicio fue creado correctamente');
     }    
@@ -51,6 +63,16 @@ class ServiciosController extends Controller
             $servicio->fill( $request->validated() );
             $servicio->image = $request->file('image')->store('images');
             $servicio->save();
+
+            $image = Image::make(storage::get($servicio->image))
+                ->widen(600)
+                ->limitColors(255)
+                ->encode();
+
+                //
+                Storage::put($servicio->image, (string) $image);
+                //
+                ServicioSaved::dispatch($servicio);
         } else {
             $servicio->update( array_filter($request->validated()) );
         }
